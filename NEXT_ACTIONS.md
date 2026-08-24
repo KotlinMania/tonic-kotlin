@@ -4,10 +4,10 @@ Based on AST analysis, here are the concrete next steps.
 
 ## Summary
 
-- **Files Present:** 11/60 (18.3%)
-- **Function parity:** 64/592 matched (target 140) — 10.8%
-- **Class/type parity:** 22/225 matched (target 30) — 9.8%
-- **Combined symbol parity:** 86/817 matched (target 170) — 10.5%
+- **Files Present:** 11/61 (18.0%)
+- **Function parity:** 64/601 matched (target 140) — 10.6%
+- **Class/type parity:** 22/230 matched (target 30) — 9.6%
+- **Combined symbol parity:** 86/831 matched (target 170) — 10.3%
 - **Average inline-code cosine:** 0.24 (function body across 9 matched files)
 - **Average documentation cosine:** 0.46 (doc text across 9 matched files)
 - **Cheat-zeroed Files:** 2
@@ -22,7 +22,7 @@ No incomplete high-dependency files detected.
 Critical missing files (>10 dependencies):
 
 1. **server.service** (14 deps)
-   - Path: `server/service.rs`
+   - Path: `src/server/service.rs`
    - Essential for 14 other files
 
 ## Detailed Work Items
@@ -31,7 +31,7 @@ Every matched file is listed below with function and type symbol parity.
 
 ### 1. status
 
-- **Target:** `tonic.Status [STUB]`
+- **Target:** `tonic.Status [STUB] [PROVENANCE-FALLBACK]`
 - **Similarity:** 0.00
 - **Dependents:** 4
 - **Priority Score:** 4346310.0
@@ -40,10 +40,15 @@ Every matched file is listed below with function and type symbol parity.
 - **Types:** 4/6 matched
 - **Missing types:** `StatusInner`, `Nested`
 - **Tests:** 1/6 matched
+- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `status.rs` vs expected `status.rs`
+- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `tests:status.rs` vs expected `status.rs`
+- **Proposed provenance header:** `// port-lint: source status.rs` (current: `// port-lint: source status.rs`)
+- **Proposed provenance header:** `// port-lint: tests status.rs` (current: `// port-lint: tests status.rs`)
+- **Lint issues:** 2
 
 ### 2. body
 
-- **Target:** `tonic.Body`
+- **Target:** `tonic.Body [PROVENANCE-FALLBACK]`
 - **Similarity:** 0.08
 - **Dependents:** 4
 - **Priority Score:** 4091209.2
@@ -51,10 +56,15 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing functions:** `from_kind`, `new`, `default`, `poll_frame`, `size_hint`
 - **Types:** 1/5 matched (target 2)
 - **Missing types:** `BoxBody`, `Kind`, `Data`, `Error`
+- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `body.rs` vs expected `body.rs`
+- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `tests:body.rs` vs expected `body.rs`
+- **Proposed provenance header:** `// port-lint: source body.rs` (current: `// port-lint: source body.rs`)
+- **Proposed provenance header:** `// port-lint: tests body.rs` (current: `// port-lint: tests body.rs`)
+- **Lint issues:** 2
 
 ### 3. extensions
 
-- **Target:** `tonic.Extensions`
+- **Target:** `tonic.Extensions [PROVENANCE-FALLBACK]`
 - **Similarity:** 0.00
 - **Dependents:** 3
 - **Priority Score:** 3030410.0
@@ -62,10 +72,15 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing functions:** `new`, `service`, `method`
 - **Types:** 1/1 matched (target 3)
 - **Missing types:** _none_
+- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `extensions.rs` vs expected `extensions.rs`
+- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `tests:extensions.rs` vs expected `extensions.rs`
+- **Proposed provenance header:** `// port-lint: source extensions.rs` (current: `// port-lint: source extensions.rs`)
+- **Proposed provenance header:** `// port-lint: tests extensions.rs` (current: `// port-lint: tests extensions.rs`)
+- **Lint issues:** 2
 
 ### 4. response
 
-- **Target:** `tonic.Response`
+- **Target:** `tonic.Response [PROVENANCE-FALLBACK]`
 - **Similarity:** 0.55
 - **Dependents:** 2
 - **Priority Score:** 2061704.5
@@ -74,10 +89,13 @@ Every matched file is listed below with function and type symbol parity.
 - **Types:** 1/1 matched
 - **Missing types:** _none_
 - **Tests:** 0/1 matched
+- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `response.rs` vs expected `response.rs`
+- **Proposed provenance header:** `// port-lint: source response.rs` (current: `// port-lint: source response.rs`)
+- **Lint issues:** 1
 
 ### 5. metadata.map
 
-- **Target:** `metadata.Map`
+- **Target:** `metadata.Map [PROVENANCE-FALLBACK]`
 - **Similarity:** 0.05
 - **Dependents:** 0
 - **Priority Score:** 768709.5
@@ -86,10 +104,13 @@ Every matched file is listed below with function and type symbol parity.
 - **Types:** 1/24 matched (target 1)
 - **Missing types:** `Iter`, `KeyAndValueRef`, `KeyAndMutValueRef`, `IterMut`, `ValueDrain`, `Keys`, `KeyRef`, `Values`, `ValueRef`, `ValuesMut`, `ValueRefMut`, `ValueIter`, `ValueIterMut`, `GetAll`, `Entry`, `VacantEntry`, `OccupiedEntry`, `Item`, `IntoIter`, `IntoMetadataKey`, `Sealed`, `AsMetadataKey`, `AsEncodingAgnosticMetadataKey`
 - **Tests:** 0/14 matched
+- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `metadata/map.rs` vs expected `metadata/map.rs`
+- **Proposed provenance header:** `// port-lint: source metadata/map.rs` (current: `// port-lint: source metadata/map.rs`)
+- **Lint issues:** 1
 
 ### 6. metadata.value
 
-- **Target:** `metadata.Value`
+- **Target:** `metadata.Value [PROVENANCE-FALLBACK]`
 - **Similarity:** 0.01
 - **Dependents:** 0
 - **Priority Score:** 364309.9
@@ -98,10 +119,13 @@ Every matched file is listed below with function and type symbol parity.
 - **Types:** 4/8 matched (target 4)
 - **Missing types:** `Error`, `Err`, `Bmv`, `Amv`
 - **Tests:** 0/10 matched
+- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `metadata/value.rs` vs expected `metadata/value.rs`
+- **Proposed provenance header:** `// port-lint: source metadata/value.rs` (current: `// port-lint: source metadata/value.rs`)
+- **Lint issues:** 1
 
 ### 7. request
 
-- **Target:** `tonic.Request`
+- **Target:** `tonic.Request [PROVENANCE-FALLBACK]`
 - **Similarity:** 0.32
 - **Dependents:** 0
 - **Priority Score:** 223406.8
@@ -110,10 +134,15 @@ Every matched file is listed below with function and type symbol parity.
 - **Types:** 1/7 matched (target 2)
 - **Missing types:** `IntoRequest`, `IntoStreamingRequest`, `Stream`, `Message`, `Sealed`, `SanitizeHeaders`
 - **Tests:** 0/5 matched
+- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `request.rs` vs expected `request.rs`
+- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `tests:request.rs` vs expected `request.rs`
+- **Proposed provenance header:** `// port-lint: source request.rs` (current: `// port-lint: source request.rs`)
+- **Proposed provenance header:** `// port-lint: tests request.rs` (current: `// port-lint: tests request.rs`)
+- **Lint issues:** 2
 
 ### 8. metadata.key
 
-- **Target:** `metadata.Key`
+- **Target:** `metadata.Key [PROVENANCE-FALLBACK]`
 - **Similarity:** 0.03
 - **Dependents:** 0
 - **Priority Score:** 131909.7
@@ -122,10 +151,13 @@ Every matched file is listed below with function and type symbol parity.
 - **Types:** 4/5 matched (target 4)
 - **Missing types:** `Err`
 - **Tests:** 0/2 matched
+- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `metadata/key.rs` vs expected `metadata/key.rs`
+- **Proposed provenance header:** `// port-lint: source metadata/key.rs` (current: `// port-lint: source metadata/key.rs`)
+- **Lint issues:** 1
 
 ### 9. metadata.encoding
 
-- **Target:** `metadata.Encoding`
+- **Target:** `metadata.Encoding [PROVENANCE-FALLBACK]`
 - **Similarity:** 0.08
 - **Dependents:** 0
 - **Priority Score:** 101609.2
@@ -133,10 +165,13 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing functions:** `is_empty`, `from_bytes`, `from_shared`, `from_static`, `decode`, `equals`, `values_equal`, `fmt`, `new`
 - **Types:** 5/6 matched (target 5)
 - **Missing types:** `Sealed`
+- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `metadata/encoding.rs` vs expected `metadata/encoding.rs`
+- **Proposed provenance header:** `// port-lint: source metadata/encoding.rs` (current: `// port-lint: source metadata/encoding.rs`)
+- **Lint issues:** 1
 
 ### 10. lib
 
-- **Target:** `tonic.Lib`
+- **Target:** `tonic.Lib [PROVENANCE-FALLBACK]`
 - **Similarity:** 1.00
 - **Dependents:** 0
 - **Priority Score:** 20200.0
@@ -144,10 +179,13 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing functions:** _none_
 - **Types:** 0/2 matched (target 1)
 - **Missing types:** `BoxError`, `Result`
+- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `lib.rs` vs expected `lib.rs`
+- **Proposed provenance header:** `// port-lint: source lib.rs` (current: `// port-lint: source lib.rs`)
+- **Lint issues:** 1
 
 ### 11. metadata.mod
 
-- **Target:** `metadata.Mod [STUB]`
+- **Target:** `metadata.Mod [STUB] [PROVENANCE-FALLBACK]`
 - **Similarity:** 0.00
 - **Dependents:** 0
 - **Priority Score:** 10.0
@@ -155,6 +193,11 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing functions:** _none_
 - **Types:** 0/0 matched (target 1)
 - **Missing types:** _none_
+- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `metadata/mod.rs` vs expected `metadata/mod.rs`
+- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `tests:metadata/mod.rs` vs expected `metadata/mod.rs`
+- **Proposed provenance header:** `// port-lint: source metadata/mod.rs` (current: `// port-lint: source metadata/mod.rs`)
+- **Proposed provenance header:** `// port-lint: tests metadata/mod.rs` (current: `// port-lint: tests metadata/mod.rs`)
+- **Lint issues:** 2
 
 ## Success Criteria
 
@@ -176,14 +219,14 @@ do not treat them as the next implementation target by default.
 
 | Source | Expected target | Deps | Source path | Expected path |
 |--------|-----------------|------|-------------|---------------|
-| `client.mod` | `client.Mod` | 0 | `client/mod.rs` | `client/Mod.kt` |
-| `codec.mod` | `codec.Mod` | 0 | `codec/mod.rs` | `codec/Mod.kt` |
-| `server.mod` | `server.Mod` | 0 | `server/mod.rs` | `server/Mod.kt` |
-| `service.mod` | `service.Mod` | 0 | `service/mod.rs` | `service/Mod.kt` |
-| `channel.mod` | `transport.channel.Mod` | 0 | `transport/channel/mod.rs` | `transport/channel/Mod.kt` |
-| `transport.channel.service.mod` | `transport.channel.service.Mod` | 0 | `transport/channel/service/mod.rs` | `transport/channel/service/Mod.kt` |
-| `transport.mod` | `transport.Mod` | 0 | `transport/mod.rs` | `transport/Mod.kt` |
-| `transport.server.mod` | `transport.server.Mod` | 0 | `transport/server/mod.rs` | `transport/server/Mod.kt` |
-| `transport.server.service.mod` | `transport.server.service.Mod` | 0 | `transport/server/service/mod.rs` | `transport/server/service/Mod.kt` |
-| `transport.service.mod` | `transport.service.Mod` | 0 | `transport/service/mod.rs` | `transport/service/Mod.kt` |
+| `client.mod` | `client.Mod` | 0 | `src/client/mod.rs` | `client/Mod.kt` |
+| `codec.mod` | `codec.Mod` | 0 | `src/codec/mod.rs` | `codec/Mod.kt` |
+| `server.mod` | `server.Mod` | 0 | `src/server/mod.rs` | `server/Mod.kt` |
+| `service.mod` | `service.Mod` | 0 | `src/service/mod.rs` | `service/Mod.kt` |
+| `channel.mod` | `transport.channel.Mod` | 0 | `src/transport/channel/mod.rs` | `transport/channel/Mod.kt` |
+| `transport.channel.service.mod` | `transport.channel.service.Mod` | 0 | `src/transport/channel/service/mod.rs` | `transport/channel/service/Mod.kt` |
+| `transport.mod` | `transport.Mod` | 0 | `src/transport/mod.rs` | `transport/Mod.kt` |
+| `transport.server.mod` | `transport.server.Mod` | 0 | `src/transport/server/mod.rs` | `transport/server/Mod.kt` |
+| `transport.server.service.mod` | `transport.server.service.Mod` | 0 | `src/transport/server/service/mod.rs` | `transport/server/service/Mod.kt` |
+| `transport.service.mod` | `transport.service.Mod` | 0 | `src/transport/service/mod.rs` | `transport/service/Mod.kt` |
 
