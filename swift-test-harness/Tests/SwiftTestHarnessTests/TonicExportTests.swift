@@ -1,21 +1,17 @@
-#if canImport(Testing)
 import Testing
 import Tonic
 
-@Suite("Tonic Swift Export Smoke Test")
+@Suite("Tonic Swift Export Suite")
 struct TonicExportTests {
-    @Test("Swift module loads")
-    func swiftModuleLoads() throws {
-        #expect(true)
+    @Test("Swift module loads cleanly")
+    func swiftModuleLoads() {
+        #expect(Bool(true), "Tonic swift module imported cleanly")
     }
-}
-#elseif canImport(XCTest)
-import XCTest
-import Tonic
 
-final class TonicExportTests: XCTestCase {
-    func testSwiftModuleLoads() throws {
-        XCTAssertTrue(true, "Tonic swift module imported cleanly")
+    @Test("gRPC Code and Status creation")
+    func grpcStatus() {
+        let status = Status.Companion.shared.ok(message: "all good")
+        #expect(status.code() == Code.Ok)
+        #expect(status.message() == "all good")
     }
 }
-#endif
