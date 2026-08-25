@@ -7,8 +7,15 @@ import io.github.kotlinmania.tonic.Status
 /**
  * A gRPC interceptor.
  */
-fun interface Interceptor {
+interface Interceptor {
     fun call(request: Request<Unit>): Request<Unit>
+
+    companion object {
+        inline operator fun invoke(crossinline block: (Request<Unit>) -> Request<Unit>): Interceptor =
+            object : Interceptor {
+                override fun call(request: Request<Unit>): Request<Unit> = block(request)
+            }
+    }
 }
 
 /**

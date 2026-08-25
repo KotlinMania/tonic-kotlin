@@ -66,9 +66,10 @@ enum class CompressionEncoding(val value: String) {
 /**
  * Struct used to configure which encodings are enabled on a server or channel.
  */
-class EnabledCompressionEncodings(
-    private val encodings: MutableList<CompressionEncoding> = mutableListOf(),
+class EnabledCompressionEncodings private constructor(
+    private val encodings: MutableList<CompressionEncoding>,
 ) {
+    constructor() : this(mutableListOf())
     fun enable(encoding: CompressionEncoding) {
         if (!encodings.contains(encoding)) {
             encodings.add(encoding)
