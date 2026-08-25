@@ -83,6 +83,62 @@ class StatusTest {
         assertEquals("generic error", fromGen.message())
     }
 
+    private class Nested(
+        val error: Throwable,
+    ) : Throwable("nested error: $error", error)
+
+    @Test
+    fun fromErrorStatus() {
+        val orig = Status.new(Code.OutOfRange, "weeaboo")
+        val found = Status.fromThrowable(orig.asException())
+        assertEquals(Code.OutOfRange, found.code())
+        assertEquals("weeaboo", found.message())
+    }
+
+    @Test
+    fun fromErrorUnknown() {
+        val orig = RuntimeException("peek-a-boo")
+        val found = Status.fromThrowable(orig)
+        assertEquals(Code.Unknown, found.code())
+        assertEquals("peek-a-boo", found.message())
+    }
+
+    @Test
+    fun fromErrorNested() {
+        val orig = Nested(Status.new(Code.OutOfRange, "weeaboo").asException())
+        val found = Status.fromThrowable(orig)
+        assertEquals(Code.OutOfRange, found.code())
+        assertEquals("weeaboo", found.message())
+    }
+
+    @Test
+    fun fromErrorH2() {
+        val orig = Status.new(Code.Cancelled, "cancelled")
+        val found = Status.fromThrowable(orig.asException())
+        assertEquals(Code.Cancelled, found.code())
+    }
+
+    @Test
+    fun toH2Error() {
+        val orig = Status.new(Code.Cancelled, "stop eet!")
+        assertEquals(Code.Cancelled, orig.code())
+    }
+
+    @Test
+    fun codeFromI32() {
+        for (code in Code.entries) {
+            assertEquals(code, Code.fromInt(code.value))
+        }
+    }
+
+    @Test
+    fun details() {
+        val details = byteArrayOf(0, 2, 3)
+        val status = Status.withDetails(Code.Unavailable, "service unavailable", details)
+        assertEquals(Code.Unavailable, status.code())
+        assertContentEquals(details, status.details())
+    }
+
     @Test
     fun errorClasses() {
         val timeout = TimeoutExpired()
@@ -92,3 +148,4 @@ class StatusTest {
         assertEquals("failed to connect", connect.message)
     }
 }
+

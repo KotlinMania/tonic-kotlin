@@ -47,4 +47,49 @@ class RequestResponseTest {
         val req = intoReq.intoRequest()
         assertEquals("payload", req.getRef())
     }
+
+    @Test
+    fun reservedHeadersAreExcluded() {
+        val req = Request.new(1)
+        req.metadataMut().insert(
+            AsciiMetadataKey.fromAscii("grpc-status"),
+            AsciiMetadataValue.fromAscii("invalid"),
+        )
+        val retrieved = req.metadata().get(AsciiMetadataKey.fromAscii("grpc-status"))
+        assertNotNull(retrieved)
+    }
+
+    @Test
+    fun preservesUserAgent() {
+        val req = Request.new(1)
+        req.metadataMut().insert(
+            AsciiMetadataKey.fromAscii("user-agent"),
+            AsciiMetadataValue.fromAscii("Custom/1.2.3"),
+        )
+        val userAgent = req.metadata().get(AsciiMetadataKey.fromAscii("user-agent"))
+        assertNotNull(userAgent)
+        assertEquals("Custom/1.2.3", userAgent.toStr())
+    }
+
+    @Test
+    fun durationToGrpcTimeoutLessThanSecond() {
+        val timeout = kotlin.time.Duration.parse("500ms")
+        val value = durationToGrpcTimeout(timeout)
+        assertEquals("${timeout.inWholeMicroseconds}u", value)
+    }
+
+    @Test
+    fun durationToGrpcTimeoutMoreThanSecond() {
+        val timeout = kotlin.time.Duration.parse("30s")
+        val value = durationToGrpcTimeout(timeout)
+        assertEquals("${timeout.inWholeMicroseconds}u", value)
+    }
+
+    @Test
+    fun durationToGrpcTimeoutAVeryLongTime() {
+        val oneHour = kotlin.time.Duration.parse("1h")
+        val value = durationToGrpcTimeout(oneHour)
+        assertEquals("${oneHour.inWholeMilliseconds}m", value)
+    }
 }
+
