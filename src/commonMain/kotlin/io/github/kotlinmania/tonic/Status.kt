@@ -75,6 +75,8 @@ class Status(
 
     fun metadata(): MetadataMap = metadata
 
+    fun metadataMut(): MetadataMap = metadata
+
     fun cause(): Throwable? = cause
 
     fun withMetadata(newMetadata: MetadataMap): Status = Status(code, message, details, newMetadata, cause)
@@ -149,8 +151,12 @@ class Status(
         fun unauthenticated(message: String): Status = Status(Code.Unauthenticated, message)
 
         fun fromThrowable(t: Throwable): Status {
-            if (t is StatusException) {
-                return t.status
+            var cur: Throwable? = t
+            while (cur != null) {
+                if (cur is StatusException) {
+                    return cur.status
+                }
+                cur = cur.cause
             }
             return Status(Code.Unknown, t.message ?: "Unknown error", cause = t)
         }
