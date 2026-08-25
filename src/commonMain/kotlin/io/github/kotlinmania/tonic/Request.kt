@@ -58,3 +58,28 @@ class Request<T>(
 fun interface IntoRequest<T> {
     fun intoRequest(): Request<T>
 }
+
+/**
+ * When converting a request, indicates whether reserved headers should be removed.
+ */
+enum class SanitizeHeaders {
+    Yes,
+    No,
+}
+
+fun durationToGrpcTimeout(duration: kotlin.time.Duration): String {
+    val nanos = duration.inWholeNanoseconds
+    val maxSize = 99_999_999L
+    if (nanos in 0..maxSize) return "${nanos}n"
+    val micros = duration.inWholeMicroseconds
+    if (micros in 0..maxSize) return "${micros}u"
+    val millis = duration.inWholeMilliseconds
+    if (millis in 0..maxSize) return "${millis}m"
+    val secs = duration.inWholeSeconds
+    if (secs in 0..maxSize) return "${secs}S"
+    val minutes = secs / 60
+    if (minutes in 0..maxSize) return "${minutes}M"
+    val hours = minutes / 60
+    return "${hours}H"
+}
+
