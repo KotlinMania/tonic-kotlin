@@ -39,15 +39,9 @@ class Extensions {
         insertErased(T::class, value)
     }
 
-    inline fun <reified T : Any> get(): T? {
-        val raw = getErased(T::class)
-        return if (raw is T) raw else null
-    }
+    inline fun <reified T : Any> get(): T? = getErased(T::class) as? T
 
-    inline fun <reified T : Any> remove(): T? {
-        val raw = removeErased(T::class)
-        return if (raw is T) raw else null
-    }
+    inline fun <reified T : Any> remove(): T? = removeErased(T::class) as? T
 
     inline fun <reified T : Any> contains(): Boolean = containsErased(T::class)
 
