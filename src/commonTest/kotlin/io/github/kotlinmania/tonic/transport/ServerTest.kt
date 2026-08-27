@@ -1,4 +1,4 @@
-// port-lint: tests transport/server/incoming.rs transport/server/mod.rs
+// port-lint: tests tonic/src/transport/server/incoming.rs tonic/src/transport/server/mod.rs
 package io.github.kotlinmania.tonic.transport
 
 import kotlin.test.Test

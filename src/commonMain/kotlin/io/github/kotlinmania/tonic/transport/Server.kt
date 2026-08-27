@@ -1,4 +1,4 @@
-// port-lint: source transport/server/mod.rs transport/server/incoming.rs
+// port-lint: source tonic/src/transport/server/mod.rs tonic/src/transport/server/incoming.rs
 package io.github.kotlinmania.tonic.transport
 
 import kotlin.time.Duration
