@@ -1,4 +1,4 @@
-// port-lint: source metadata/value.rs
+// port-lint: source tonic/src/metadata/value.rs
 package io.github.kotlinmania.tonic.metadata
 
 import kotlin.io.encoding.Base64
