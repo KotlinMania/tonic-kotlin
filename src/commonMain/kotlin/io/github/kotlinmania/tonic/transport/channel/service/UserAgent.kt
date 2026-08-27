@@ -1,4 +1,4 @@
-// port-lint: source tonic/src/transport/channel/service/user_agent.rs
+// port-lint: source transport/channel/service/user_agent.rs
 package io.github.kotlinmania.tonic.transport.channel.service
 
 import io.github.kotlinmania.tonic.Request
