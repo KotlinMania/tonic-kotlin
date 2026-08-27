@@ -1,4 +1,4 @@
-// port-lint: tests tonic/src/transport/server/display_error_stack.rs
+// port-lint: tests transport/server/display_error_stack.rs
 package io.github.kotlinmania.tonic.transport.server
 
 import kotlin.test.Test

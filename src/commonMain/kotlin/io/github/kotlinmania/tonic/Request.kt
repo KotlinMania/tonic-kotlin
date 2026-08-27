@@ -1,4 +1,4 @@
-// port-lint: source tonic/src/request.rs
+// port-lint: source request.rs
 package io.github.kotlinmania.tonic
 
 import io.github.kotlinmania.tonic.metadata.MetadataMap

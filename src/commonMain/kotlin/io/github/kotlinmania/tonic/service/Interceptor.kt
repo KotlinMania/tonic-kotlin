@@ -1,4 +1,4 @@
-// port-lint: source tonic/src/service/interceptor.rs
+// port-lint: source service/interceptor.rs
 package io.github.kotlinmania.tonic.service
 
 import io.github.kotlinmania.tonic.Request
