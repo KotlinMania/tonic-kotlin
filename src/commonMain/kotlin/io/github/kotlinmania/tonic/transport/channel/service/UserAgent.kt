@@ -14,19 +14,21 @@ class UserAgent<T>(
     val inner: T,
     customUserAgent: String? = null,
 ) {
-    val userAgent: String = if (customUserAgent != null) {
-        "$customUserAgent $TONIC_USER_AGENT"
-    } else {
-        TONIC_USER_AGENT
-    }
+    val userAgent: String =
+        if (customUserAgent != null) {
+            "$customUserAgent $TONIC_USER_AGENT"
+        } else {
+            TONIC_USER_AGENT
+        }
 
     fun <Req> applyToRequest(req: Request<Req>): Request<Req> {
         val existing = req.metadata().get(AsciiMetadataKey.fromAscii("user-agent"))
-        val finalUserAgent = if (existing != null) {
-            "${existing.toStr()} $userAgent"
-        } else {
-            userAgent
-        }
+        val finalUserAgent =
+            if (existing != null) {
+                "${existing.toStr()} $userAgent"
+            } else {
+                userAgent
+            }
         req.metadataMut().insert(
             AsciiMetadataKey.fromAscii("user-agent"),
             AsciiMetadataValue.fromAscii(finalUserAgent),

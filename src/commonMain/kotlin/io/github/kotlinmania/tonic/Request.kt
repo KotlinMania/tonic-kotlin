@@ -82,4 +82,3 @@ fun durationToGrpcTimeout(duration: kotlin.time.Duration): String {
     val hours = minutes / 60
     return "${hours}H"
 }
-

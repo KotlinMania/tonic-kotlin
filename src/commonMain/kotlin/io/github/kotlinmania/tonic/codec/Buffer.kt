@@ -49,6 +49,7 @@ class EncodeBuf private constructor(
     private val buffer: MutableList<Byte>,
 ) {
     constructor() : this(mutableListOf())
+
     fun remainingMut(): Int = 100 - buffer.size
 
     fun advanceMut(cnt: Int) {

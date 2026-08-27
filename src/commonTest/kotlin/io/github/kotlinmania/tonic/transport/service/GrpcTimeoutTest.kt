@@ -91,7 +91,9 @@ class GrpcTimeoutTest {
         }
     }
 
-    class HeaderValueGen(val value: String) {
+    class HeaderValueGen(
+        val value: String,
+    ) {
         companion object {
             fun arbitrary(): HeaderValueGen = HeaderValueGen("100m")
         }

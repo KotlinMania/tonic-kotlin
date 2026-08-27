@@ -12,10 +12,13 @@ const val ACCEPT_ENCODING_HEADER: String = "grpc-accept-encoding"
 /**
  * The compression encodings Tonic supports.
  */
-enum class CompressionEncoding(val value: String) {
+enum class CompressionEncoding(
+    val value: String,
+) {
     Gzip("gzip"),
     Deflate("deflate"),
-    Zstd("zstd");
+    Zstd("zstd"),
+    ;
 
     fun asStr(): String = value
 
@@ -70,15 +73,14 @@ class EnabledCompressionEncodings private constructor(
     private val encodings: MutableList<CompressionEncoding>,
 ) {
     constructor() : this(mutableListOf())
+
     fun enable(encoding: CompressionEncoding) {
         if (!encodings.contains(encoding)) {
             encodings.add(encoding)
         }
     }
 
-    fun pop(): CompressionEncoding? {
-        return if (encodings.isNotEmpty()) encodings.removeAt(encodings.size - 1) else null
-    }
+    fun pop(): CompressionEncoding? = if (encodings.isNotEmpty()) encodings.removeAt(encodings.size - 1) else null
 
     fun intoAcceptEncodingHeaderValue(): String? {
         if (encodings.isEmpty()) return null

@@ -3,7 +3,9 @@ package io.github.kotlinmania.tonic.transport
 
 import kotlin.time.Duration
 
-class TcpIncoming private constructor(val addr: String) {
+class TcpIncoming private constructor(
+    val addr: String,
+) {
     companion object {
         private val boundAddresses = mutableSetOf<String>()
 
@@ -49,6 +51,7 @@ class Server(
 
     companion object {
         fun builder(): Server = Server()
+
         fun default(): Server = Server()
     }
 }
