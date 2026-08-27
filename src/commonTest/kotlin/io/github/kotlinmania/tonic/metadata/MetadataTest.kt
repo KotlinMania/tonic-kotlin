@@ -275,4 +275,3 @@ class MetadataTest {
         // Validation helper matching upstream Rust test
     }
 }
-

@@ -148,4 +148,3 @@ class StatusTest {
         assertEquals("failed to connect", connect.message)
     }
 }
-

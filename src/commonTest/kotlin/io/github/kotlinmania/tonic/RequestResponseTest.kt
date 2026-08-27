@@ -92,4 +92,3 @@ class RequestResponseTest {
         assertEquals("${oneHour.inWholeMilliseconds}m", value)
     }
 }
-

@@ -2,7 +2,6 @@
 package io.github.kotlinmania.tonic.service
 
 import io.github.kotlinmania.tonic.Request
-import io.github.kotlinmania.tonic.Status
 
 /**
  * A gRPC interceptor.

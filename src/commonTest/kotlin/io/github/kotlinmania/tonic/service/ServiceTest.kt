@@ -1,7 +1,6 @@
 // port-lint: tests service/interceptor.rs tonic/src/service/layered.rs
 package io.github.kotlinmania.tonic.service
 
-import io.github.kotlinmania.tonic.Code
 import io.github.kotlinmania.tonic.Request
 import io.github.kotlinmania.tonic.Status
 import io.github.kotlinmania.tonic.metadata.AsciiMetadataKey
@@ -13,11 +12,12 @@ import kotlin.test.assertFailsWith
 class ServiceTest {
     @Test
     fun doesntRemoveHeadersFromRequests() {
-        val interceptor = Interceptor { req ->
-            val userAgent = req.metadata().get(AsciiMetadataKey.fromAscii("user-agent"))
-            assertEquals("test-tonic", userAgent?.toStr())
-            req
-        }
+        val interceptor =
+            Interceptor { req ->
+                val userAgent = req.metadata().get(AsciiMetadataKey.fromAscii("user-agent"))
+                assertEquals("test-tonic", userAgent?.toStr())
+                req
+            }
         val svc = InterceptedService.new(Unit, interceptor)
         val req = Request.new(Unit)
         req.metadataMut().insert(
@@ -34,14 +34,16 @@ class ServiceTest {
     @Test
     fun handlesInterceptedStatusAsResponse() {
         val message = "Blocked by the interceptor"
-        val interceptor = Interceptor { _ ->
-            throw Status.permissionDenied(message).asException()
-        }
+        val interceptor =
+            Interceptor { _ ->
+                throw Status.permissionDenied(message).asException()
+            }
         val svc = InterceptedService.new(Unit, interceptor)
         val req = Request.new(Unit)
-        val ex = assertFailsWith<Exception> {
-            svc.intercept(req)
-        }
+        val ex =
+            assertFailsWith<Exception> {
+                svc.intercept(req)
+            }
         assertEquals(true, ex.message?.contains(message) ?: false)
     }
 

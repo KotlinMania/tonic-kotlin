@@ -10,6 +10,7 @@ class DisplayErrorStackTest {
         val causeError: TestError? = null,
     ) : Throwable(text, causeError) {
         fun fmt(): String = text
+
         fun source(): Throwable? = causeError
     }
 
