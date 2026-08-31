@@ -5,12 +5,12 @@ Based on AST analysis, here are the concrete next steps.
 ## Summary
 
 - **Files Present:** 19/60 (31.7%)
-- **Function parity:** 134/644 matched (target 257) — 20.8%
-- **Class/type parity:** 38/249 matched (target 56) — 15.3%
-- **Combined symbol parity:** 172/893 matched (target 313) — 19.3%
+- **Function parity:** 133/644 matched (target 227) — 20.7%
+- **Class/type parity:** 38/247 matched (target 54) — 15.4%
+- **Combined symbol parity:** 171/891 matched (target 281) — 19.2%
 - **Average inline-code cosine:** 0.25 (function body across 15 matched files)
 - **Average documentation cosine:** 0.43 (doc text across 15 matched files)
-- **Cheat-zeroed Files:** 5
+- **Cheat-zeroed Files:** 4
 - **Critical Issues:** 18 files with <0.60 function similarity
 
 ## Priority 1: Fix Incomplete High-Dependency Files
@@ -34,9 +34,9 @@ Every matched file is listed below with function and type symbol parity.
 - **Target:** `tonic.Status [STUB]`
 - **Similarity:** 0.00
 - **Dependents:** 4
-- **Priority Score:** 4256310.0
-- **Functions:** 33/57 matched (target 50)
-- **Missing functions:** `into_status`, `fmt`, `from_error_generic`, `from_error`, `try_from_error`, `from_h2_error`, `code_from_h2`, `from_hyper_error`, `map_error`, `from_header_map`, `to_header_map`, `add_header`, `with_details_and_metadata`, `set_source`, `into_http`, `find_status_in_source_chain`, `invalid_header_value_byte`, `from`, `source`, `infer_grpc_status`, `from_i32`, `from_bytes`, `to_header_value`, `parse_err`
+- **Priority Score:** 4266310.0
+- **Functions:** 32/57 matched (target 49)
+- **Missing functions:** `into_status`, `description`, `fmt`, `from_error_generic`, `from_error`, `try_from_error`, `from_h2_error`, `code_from_h2`, `from_hyper_error`, `map_error`, `from_header_map`, `to_header_map`, `add_header`, `with_details_and_metadata`, `set_source`, `into_http`, `find_status_in_source_chain`, `invalid_header_value_byte`, `from`, `source`, `infer_grpc_status`, `from_i32`, `from_bytes`, `to_header_value`, `parse_err`
 - **Types:** 5/6 matched (target 8)
 - **Missing types:** `StatusInner`
 - **Tests:** 6/6 matched
@@ -230,28 +230,6 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing types:** _none_
 - **Tests:** 2/2 matched
 
-### 18. lib
-
-- **Target:** `tonic.Lib`
-- **Similarity:** 1.00
-- **Dependents:** 0
-- **Priority Score:** 20200.0
-- **Functions:** 0/0 matched
-- **Missing functions:** _none_
-- **Types:** 0/2 matched (target 1)
-- **Missing types:** `BoxError`, `Result`
-
-### 19. metadata.mod
-
-- **Target:** `metadata.Mod [STUB]`
-- **Similarity:** 0.00
-- **Dependents:** 0
-- **Priority Score:** 10.0
-- **Functions:** 0/0 matched (target 29)
-- **Missing functions:** _none_
-- **Types:** 0/0 matched (target 1)
-- **Missing types:** _none_
-
 ## Success Criteria
 
 For each file to be considered "complete":
@@ -260,4 +238,18 @@ For each file to be considered "complete":
 - All tests ported
 - Documentation ported
 - port-lint header present
+
+## Reexport / Wiring Modules
+
+These files match `reexport_modules` patterns in `.ast_distance_config.json`. They are filtered out of
+normal priority and missing-file ladders because they are wiring
+modules, not direct logic ports. Consult them for call-site routing;
+do not treat them as the next implementation target by default.
+
+### Matched
+
+| Source | Target | Path |
+|--------|--------|------|
+| `lib` | `tonic.Lib` | `lib` |
+| `metadata.mod` | `metadata.Mod` | `metadata/mod` |
 

@@ -20,9 +20,13 @@ enum class CompressionEncoding(
     Zstd("zstd"),
     ;
 
-    fun asStr(): String = value
+    fun asStr(): String {
+        return value
+    }
 
-    override fun toString(): String = value
+    override fun toString(): String {
+        return value
+    }
 
     companion object {
         val ENCODINGS: List<CompressionEncoding> = entries
@@ -80,7 +84,12 @@ class EnabledCompressionEncodings private constructor(
         }
     }
 
-    fun pop(): CompressionEncoding? = if (encodings.isNotEmpty()) encodings.removeAt(encodings.size - 1) else null
+    fun pop(): CompressionEncoding? {
+        if (encodings.isNotEmpty()) {
+            return encodings.removeAt(encodings.size - 1)
+        }
+        return null
+    }
 
     fun intoAcceptEncodingHeaderValue(): String? {
         if (encodings.isEmpty()) return null
@@ -92,7 +101,11 @@ class EnabledCompressionEncodings private constructor(
         return sb.toString()
     }
 
-    fun isEnabled(encoding: CompressionEncoding): Boolean = encodings.contains(encoding)
+    fun isEnabled(encoding: CompressionEncoding): Boolean {
+        return encodings.contains(encoding)
+    }
 
-    fun isEmpty(): Boolean = encodings.isEmpty()
+    fun isEmpty(): Boolean {
+        return encodings.isEmpty()
+    }
 }
