@@ -1,4 +1,4 @@
-// port-lint: source body.rs
+// port-lint: source tonic/src/body.rs
 package io.github.kotlinmania.tonic
 
 import kotlinx.coroutines.flow.Flow

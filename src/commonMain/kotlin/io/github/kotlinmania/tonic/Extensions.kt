@@ -1,4 +1,4 @@
-// port-lint: source extensions.rs
+// port-lint: source tonic/src/extensions.rs
 package io.github.kotlinmania.tonic
 
 import kotlin.reflect.KClass
