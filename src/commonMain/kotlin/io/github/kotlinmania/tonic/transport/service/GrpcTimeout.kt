@@ -1,4 +1,4 @@
-// port-lint: source tonic/src/transport/service/grpc_timeout.rs
+// port-lint: source transport/service/grpc_timeout.rs
 package io.github.kotlinmania.tonic.transport.service
 
 import io.github.kotlinmania.tonic.metadata.AsciiMetadataKey

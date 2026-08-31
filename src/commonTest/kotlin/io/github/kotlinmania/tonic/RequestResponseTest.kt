@@ -1,4 +1,4 @@
-// port-lint: tests tonic/src/request.rs
+// port-lint: tests request.rs response.rs
 package io.github.kotlinmania.tonic
 
 import io.github.kotlinmania.tonic.metadata.AsciiMetadataKey

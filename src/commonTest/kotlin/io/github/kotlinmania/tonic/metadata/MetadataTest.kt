@@ -1,4 +1,4 @@
-// port-lint: tests tonic/src/metadata/mod.rs
+// port-lint: tests metadata/mod.rs
 package io.github.kotlinmania.tonic.metadata
 
 import kotlin.test.Test

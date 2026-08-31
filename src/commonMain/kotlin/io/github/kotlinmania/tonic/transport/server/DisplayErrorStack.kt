@@ -1,4 +1,4 @@
-// port-lint: source tonic/src/transport/server/display_error_stack.rs
+// port-lint: source transport/server/display_error_stack.rs
 package io.github.kotlinmania.tonic.transport.server
 
 /**

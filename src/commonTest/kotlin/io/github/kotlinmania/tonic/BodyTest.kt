@@ -1,4 +1,4 @@
-// port-lint: tests tonic/src/body.rs
+// port-lint: tests body.rs
 package io.github.kotlinmania.tonic
 
 import kotlinx.coroutines.flow.first
