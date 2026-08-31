@@ -31,8 +31,6 @@ enum class Code(
     Unauthenticated(16),
     ;
 
-    fun description(): String = toDescription()
-
     fun toDescription(): String =
         when (this) {
             Ok -> "The operation completed successfully"
