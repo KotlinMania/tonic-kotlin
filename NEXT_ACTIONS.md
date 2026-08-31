@@ -4,14 +4,14 @@ Based on AST analysis, here are the concrete next steps.
 
 ## Summary
 
-- **Files Present:** 19/60 (31.7%)
-- **Function parity:** 133/644 matched (target 227) — 20.7%
-- **Class/type parity:** 38/247 matched (target 54) — 15.4%
-- **Combined symbol parity:** 171/891 matched (target 281) — 19.2%
-- **Average inline-code cosine:** 0.25 (function body across 15 matched files)
-- **Average documentation cosine:** 0.43 (doc text across 15 matched files)
-- **Cheat-zeroed Files:** 4
-- **Critical Issues:** 18 files with <0.60 function similarity
+- **Files Present:** 19/61 (31.1%)
+- **Function parity:** 133/653 matched (target 256) — 20.4%
+- **Class/type parity:** 38/252 matched (target 55) — 15.1%
+- **Combined symbol parity:** 171/905 matched (target 311) — 18.9%
+- **Average inline-code cosine:** 0.20 (function body across 14 matched files)
+- **Average documentation cosine:** 0.45 (doc text across 14 matched files)
+- **Cheat-zeroed Files:** 5
+- **Critical Issues:** 19 files with <0.60 function similarity
 
 ## Priority 1: Fix Incomplete High-Dependency Files
 
@@ -22,14 +22,14 @@ No incomplete high-dependency files detected.
 Critical missing files (>10 dependencies):
 
 1. **server.service** (14 deps)
-   - Path: `server/service.rs`
+   - Path: `tonic/src/server/service.rs`
    - Essential for 14 other files
 
 ## Detailed Work Items
 
 Every matched file is listed below with function and type symbol parity.
 
-### 1. status
+### 1. tonic.status
 
 - **Target:** `tonic.Status [STUB]`
 - **Similarity:** 0.00
@@ -41,7 +41,7 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing types:** `StatusInner`
 - **Tests:** 6/6 matched
 
-### 2. body
+### 2. tonic.body
 
 - **Target:** `tonic.Body`
 - **Similarity:** 0.08
@@ -52,7 +52,7 @@ Every matched file is listed below with function and type symbol parity.
 - **Types:** 1/5 matched (target 2)
 - **Missing types:** `BoxBody`, `Kind`, `Data`, `Error`
 
-### 3. extensions
+### 3. tonic.extensions
 
 - **Target:** `tonic.Extensions`
 - **Similarity:** 0.00
@@ -75,7 +75,7 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing types:** `GrpcTimeout`, `Response`, `Error`, `Future`, `ResponseFuture`, `Output`
 - **Tests:** 11/14 matched
 
-### 5. response
+### 5. tonic.response
 
 - **Target:** `tonic.Response`
 - **Similarity:** 0.55
@@ -123,7 +123,7 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing types:** `Iter`, `KeyAndValueRef`, `KeyAndMutValueRef`, `IterMut`, `ValueDrain`, `Keys`, `KeyRef`, `Values`, `ValueRef`, `ValuesMut`, `ValueRefMut`, `ValueIter`, `ValueIterMut`, `GetAll`, `Entry`, `VacantEntry`, `OccupiedEntry`, `Item`, `IntoIter`, `IntoMetadataKey`, `Sealed`, `AsMetadataKey`, `AsEncodingAgnosticMetadataKey`
 - **Tests:** 0/14 matched
 
-### 9. transport.server.mod
+### 9. tonic.transport.server.mod
 
 - **Target:** `transport.Server [STUB]`
 - **Similarity:** 0.00
@@ -159,7 +159,7 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing types:** `InterceptorLayer`, `Service`, `Response`, `Error`, `Future`, `ResponseFuture`, `Kind`, `Output`, `ResponseBody`, `ResponseBodyKind`, `Data`
 - **Tests:** 3/3 matched
 
-### 12. request
+### 12. tonic.request
 
 - **Target:** `tonic.Request`
 - **Similarity:** 0.45
@@ -230,6 +230,17 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing types:** _none_
 - **Tests:** 2/2 matched
 
+### 18. metadata.mod
+
+- **Target:** `metadata.Mod [STUB]`
+- **Similarity:** 0.00
+- **Dependents:** 0
+- **Priority Score:** 10.0
+- **Functions:** 0/0 matched (target 29)
+- **Missing functions:** _none_
+- **Types:** 0/0 matched (target 1)
+- **Missing types:** _none_
+
 ## Success Criteria
 
 For each file to be considered "complete":
@@ -250,6 +261,5 @@ do not treat them as the next implementation target by default.
 
 | Source | Target | Path |
 |--------|--------|------|
-| `lib` | `tonic.Lib` | `lib` |
-| `metadata.mod` | `metadata.Mod` | `metadata/mod` |
+| `tonic.lib` | `tonic.Lib` | `tonic/src/lib` |
 

@@ -1,4 +1,4 @@
-// port-lint: source codec/buffer.rs
+// port-lint: source tonic/src/codec/buffer.rs
 package io.github.kotlinmania.tonic.codec
 
 /**

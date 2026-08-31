@@ -1,4 +1,4 @@
-// port-lint: tests codec/buffer.rs
+// port-lint: tests tonic/src/codec/buffer.rs
 package io.github.kotlinmania.tonic.codec
 
 import kotlin.test.Test
