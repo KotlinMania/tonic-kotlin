@@ -4,14 +4,14 @@ Based on AST analysis, here are the concrete next steps.
 
 ## Summary
 
-- **Files Present:** 19/61 (31.1%)
-- **Function parity:** 133/653 matched (target 256) — 20.4%
-- **Class/type parity:** 38/254 matched (target 56) — 15.0%
-- **Combined symbol parity:** 171/907 matched (target 312) — 18.9%
-- **Average inline-code cosine:** 0.20 (function body across 14 matched files)
-- **Average documentation cosine:** 0.45 (doc text across 14 matched files)
-- **Cheat-zeroed Files:** 6
-- **Critical Issues:** 19 files with <0.60 function similarity
+- **Files Present:** 19/60 (31.7%)
+- **Function parity:** 134/644 matched (target 257) — 20.8%
+- **Class/type parity:** 38/249 matched (target 56) — 15.3%
+- **Combined symbol parity:** 172/893 matched (target 313) — 19.3%
+- **Average inline-code cosine:** 0.25 (function body across 15 matched files)
+- **Average documentation cosine:** 0.43 (doc text across 15 matched files)
+- **Cheat-zeroed Files:** 5
+- **Critical Issues:** 18 files with <0.60 function similarity
 
 ## Priority 1: Fix Incomplete High-Dependency Files
 
@@ -22,26 +22,26 @@ No incomplete high-dependency files detected.
 Critical missing files (>10 dependencies):
 
 1. **server.service** (14 deps)
-   - Path: `tonic/src/server/service.rs`
+   - Path: `server/service.rs`
    - Essential for 14 other files
 
 ## Detailed Work Items
 
 Every matched file is listed below with function and type symbol parity.
 
-### 1. tonic.status
+### 1. status
 
 - **Target:** `tonic.Status [STUB]`
 - **Similarity:** 0.00
 - **Dependents:** 4
-- **Priority Score:** 4266310.0
-- **Functions:** 32/57 matched (target 49)
-- **Missing functions:** `into_status`, `description`, `fmt`, `from_error_generic`, `from_error`, `try_from_error`, `from_h2_error`, `code_from_h2`, `from_hyper_error`, `map_error`, `from_header_map`, `to_header_map`, `add_header`, `with_details_and_metadata`, `set_source`, `into_http`, `find_status_in_source_chain`, `invalid_header_value_byte`, `from`, `source`, `infer_grpc_status`, `from_i32`, `from_bytes`, `to_header_value`, `parse_err`
+- **Priority Score:** 4256310.0
+- **Functions:** 33/57 matched (target 50)
+- **Missing functions:** `into_status`, `fmt`, `from_error_generic`, `from_error`, `try_from_error`, `from_h2_error`, `code_from_h2`, `from_hyper_error`, `map_error`, `from_header_map`, `to_header_map`, `add_header`, `with_details_and_metadata`, `set_source`, `into_http`, `find_status_in_source_chain`, `invalid_header_value_byte`, `from`, `source`, `infer_grpc_status`, `from_i32`, `from_bytes`, `to_header_value`, `parse_err`
 - **Types:** 5/6 matched (target 8)
 - **Missing types:** `StatusInner`
 - **Tests:** 6/6 matched
 
-### 2. tonic.body
+### 2. body
 
 - **Target:** `tonic.Body`
 - **Similarity:** 0.08
@@ -52,7 +52,7 @@ Every matched file is listed below with function and type symbol parity.
 - **Types:** 1/5 matched (target 2)
 - **Missing types:** `BoxBody`, `Kind`, `Data`, `Error`
 
-### 3. tonic.extensions
+### 3. extensions
 
 - **Target:** `tonic.Extensions`
 - **Similarity:** 0.00
@@ -75,7 +75,7 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing types:** `GrpcTimeout`, `Response`, `Error`, `Future`, `ResponseFuture`, `Output`
 - **Tests:** 11/14 matched
 
-### 5. tonic.response
+### 5. response
 
 - **Target:** `tonic.Response`
 - **Similarity:** 0.55
@@ -123,7 +123,7 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing types:** `Iter`, `KeyAndValueRef`, `KeyAndMutValueRef`, `IterMut`, `ValueDrain`, `Keys`, `KeyRef`, `Values`, `ValueRef`, `ValuesMut`, `ValueRefMut`, `ValueIter`, `ValueIterMut`, `GetAll`, `Entry`, `VacantEntry`, `OccupiedEntry`, `Item`, `IntoIter`, `IntoMetadataKey`, `Sealed`, `AsMetadataKey`, `AsEncodingAgnosticMetadataKey`
 - **Tests:** 0/14 matched
 
-### 9. tonic.transport.server.mod
+### 9. transport.server.mod
 
 - **Target:** `transport.Server [STUB]`
 - **Similarity:** 0.00
@@ -159,7 +159,7 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing types:** `InterceptorLayer`, `Service`, `Response`, `Error`, `Future`, `ResponseFuture`, `Kind`, `Output`, `ResponseBody`, `ResponseBodyKind`, `Data`
 - **Tests:** 3/3 matched
 
-### 12. tonic.request
+### 12. request
 
 - **Target:** `tonic.Request`
 - **Similarity:** 0.45
@@ -230,12 +230,12 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing types:** _none_
 - **Tests:** 2/2 matched
 
-### 18. tonic.lib
+### 18. lib
 
-- **Target:** `tonic.Lib [STUB]`
-- **Similarity:** 0.00
+- **Target:** `tonic.Lib`
+- **Similarity:** 1.00
 - **Dependents:** 0
-- **Priority Score:** 20210.0
+- **Priority Score:** 20200.0
 - **Functions:** 0/0 matched
 - **Missing functions:** _none_
 - **Types:** 0/2 matched (target 1)

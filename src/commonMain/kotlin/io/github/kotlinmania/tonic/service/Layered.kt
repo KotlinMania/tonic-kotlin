@@ -1,4 +1,4 @@
-// port-lint: source tonic/src/service/layered.rs
+// port-lint: source service/layered.rs
 package io.github.kotlinmania.tonic.service
 
 /**

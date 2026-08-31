@@ -1,4 +1,4 @@
-// port-lint: source tonic/src/status.rs
+// port-lint: source status.rs
 package io.github.kotlinmania.tonic
 
 import io.github.kotlinmania.tonic.metadata.AsciiMetadataKey
@@ -30,6 +30,8 @@ enum class Code(
     DataLoss(15),
     Unauthenticated(16),
     ;
+
+    fun description(): String = toDescription()
 
     fun toDescription(): String =
         when (this) {
