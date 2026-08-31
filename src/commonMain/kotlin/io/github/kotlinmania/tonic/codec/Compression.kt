@@ -1,4 +1,4 @@
-// port-lint: source codec/compression.rs
+// port-lint: source tonic/src/codec/compression.rs
 package io.github.kotlinmania.tonic.codec
 
 import io.github.kotlinmania.tonic.Status
