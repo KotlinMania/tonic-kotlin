@@ -4,13 +4,13 @@ Based on AST analysis, here are the concrete next steps.
 
 ## Summary
 
-- **Files Present:** 19/60 (31.7%)
-- **Function parity:** 133/644 matched (target 227) — 20.7%
-- **Class/type parity:** 38/247 matched (target 54) — 15.4%
-- **Combined symbol parity:** 171/891 matched (target 281) — 19.2%
+- **Files Present:** 19/61 (31.1%)
+- **Function parity:** 133/653 matched (target 256) — 20.4%
+- **Class/type parity:** 38/252 matched (target 55) — 15.1%
+- **Combined symbol parity:** 171/905 matched (target 311) — 18.9%
 - **Average inline-code cosine:** 0.20 (function body across 14 matched files)
 - **Average documentation cosine:** 0.45 (doc text across 14 matched files)
-- **Cheat-zeroed Files:** 4
+- **Cheat-zeroed Files:** 5
 - **Critical Issues:** 19 files with <0.60 function similarity
 
 ## Priority 1: Fix Incomplete High-Dependency Files
@@ -22,16 +22,16 @@ No incomplete high-dependency files detected.
 Critical missing files (>10 dependencies):
 
 1. **server.service** (14 deps)
-   - Path: `server/service.rs`
+   - Path: `tonic/src/server/service.rs`
    - Essential for 14 other files
 
 ## Detailed Work Items
 
 Every matched file is listed below with function and type symbol parity.
 
-### 1. status
+### 1. tonic.status
 
-- **Target:** `tonic.Status [STUB] [PROVENANCE-FALLBACK]`
+- **Target:** `tonic.Status [STUB]`
 - **Similarity:** 0.00
 - **Dependents:** 4
 - **Priority Score:** 4266310.0
@@ -40,17 +40,10 @@ Every matched file is listed below with function and type symbol parity.
 - **Types:** 5/6 matched (target 8)
 - **Missing types:** `StatusInner`
 - **Tests:** 6/6 matched
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `tonic/src/status.rs` vs expected `status.rs`
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `tests:tonic/src/status.rs` vs expected `status.rs`
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `tests:tonic/src/status.rs` vs expected `status.rs`
-- **Proposed provenance header:** `// port-lint: source status.rs` (current: `// port-lint: source tonic/src/status.rs`)
-- **Proposed provenance header:** `// port-lint: tests status.rs` (current: `// port-lint: tests tonic/src/status.rs`)
-- **Proposed provenance header:** `// port-lint: tests status.rs` (current: `// port-lint: tests tonic/src/status.rs`)
-- **Lint issues:** 3
 
-### 2. body
+### 2. tonic.body
 
-- **Target:** `tonic.Body [PROVENANCE-FALLBACK]`
+- **Target:** `tonic.Body`
 - **Similarity:** 0.08
 - **Dependents:** 4
 - **Priority Score:** 4091209.2
@@ -58,15 +51,10 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing functions:** `from_kind`, `new`, `default`, `poll_frame`, `size_hint`
 - **Types:** 1/5 matched (target 2)
 - **Missing types:** `BoxBody`, `Kind`, `Data`, `Error`
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `tonic/src/body.rs` vs expected `body.rs`
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `tests:tonic/src/body.rs` vs expected `body.rs`
-- **Proposed provenance header:** `// port-lint: source body.rs` (current: `// port-lint: source tonic/src/body.rs`)
-- **Proposed provenance header:** `// port-lint: tests body.rs` (current: `// port-lint: tests tonic/src/body.rs`)
-- **Lint issues:** 2
 
-### 3. extensions
+### 3. tonic.extensions
 
-- **Target:** `tonic.Extensions [PROVENANCE-FALLBACK]`
+- **Target:** `tonic.Extensions`
 - **Similarity:** 0.00
 - **Dependents:** 3
 - **Priority Score:** 3030410.0
@@ -74,15 +62,10 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing functions:** `new`, `service`, `method`
 - **Types:** 1/1 matched (target 3)
 - **Missing types:** _none_
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `tonic/src/extensions.rs` vs expected `extensions.rs`
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `tests:tonic/src/extensions.rs` vs expected `extensions.rs`
-- **Proposed provenance header:** `// port-lint: source extensions.rs` (current: `// port-lint: source tonic/src/extensions.rs`)
-- **Proposed provenance header:** `// port-lint: tests extensions.rs` (current: `// port-lint: tests tonic/src/extensions.rs`)
-- **Lint issues:** 2
 
 ### 4. service.grpc_timeout
 
-- **Target:** `service.GrpcTimeout [PROVENANCE-FALLBACK]`
+- **Target:** `service.GrpcTimeout`
 - **Similarity:** 0.28
 - **Dependents:** 2
 - **Priority Score:** 2132607.2
@@ -91,15 +74,10 @@ Every matched file is listed below with function and type symbol parity.
 - **Types:** 1/7 matched (target 2)
 - **Missing types:** `GrpcTimeout`, `Response`, `Error`, `Future`, `ResponseFuture`, `Output`
 - **Tests:** 11/14 matched
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `tonic/src/transport/service/grpc_timeout.rs` vs expected `transport/service/grpc_timeout.rs`
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `tests:tonic/src/transport/service/grpc_timeout.rs` vs expected `transport/service/grpc_timeout.rs`
-- **Proposed provenance header:** `// port-lint: source transport/service/grpc_timeout.rs` (current: `// port-lint: source tonic/src/transport/service/grpc_timeout.rs`)
-- **Proposed provenance header:** `// port-lint: tests transport/service/grpc_timeout.rs` (current: `// port-lint: tests tonic/src/transport/service/grpc_timeout.rs`)
-- **Lint issues:** 2
 
-### 5. response
+### 5. tonic.response
 
-- **Target:** `tonic.Response [PROVENANCE-FALLBACK]`
+- **Target:** `tonic.Response`
 - **Similarity:** 0.55
 - **Dependents:** 2
 - **Priority Score:** 2061704.5
@@ -108,13 +86,10 @@ Every matched file is listed below with function and type symbol parity.
 - **Types:** 1/1 matched
 - **Missing types:** _none_
 - **Tests:** 0/1 matched
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `tonic/src/response.rs` vs expected `response.rs`
-- **Proposed provenance header:** `// port-lint: source response.rs` (current: `// port-lint: source tonic/src/response.rs`)
-- **Lint issues:** 1
 
 ### 6. service.user_agent
 
-- **Target:** `service.UserAgent [PROVENANCE-FALLBACK]`
+- **Target:** `service.UserAgent`
 - **Similarity:** 0.50
 - **Dependents:** 1
 - **Priority Score:** 1031504.9
@@ -123,15 +98,10 @@ Every matched file is listed below with function and type symbol parity.
 - **Types:** 3/6 matched (target 4)
 - **Missing types:** `Response`, `Error`, `Future`
 - **Tests:** 6/6 matched
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `tonic/src/transport/channel/service/user_agent.rs` vs expected `transport/channel/service/user_agent.rs`
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `tests:tonic/src/transport/channel/service/user_agent.rs` vs expected `transport/channel/service/user_agent.rs`
-- **Proposed provenance header:** `// port-lint: source transport/channel/service/user_agent.rs` (current: `// port-lint: source tonic/src/transport/channel/service/user_agent.rs`)
-- **Proposed provenance header:** `// port-lint: tests transport/channel/service/user_agent.rs` (current: `// port-lint: tests tonic/src/transport/channel/service/user_agent.rs`)
-- **Lint issues:** 2
 
 ### 7. server.display_error_stack
 
-- **Target:** `server.DisplayErrorStack [PROVENANCE-FALLBACK]`
+- **Target:** `server.DisplayErrorStack`
 - **Similarity:** 0.23
 - **Dependents:** 1
 - **Priority Score:** 1010507.6
@@ -140,15 +110,10 @@ Every matched file is listed below with function and type symbol parity.
 - **Types:** 2/2 matched (target 3)
 - **Missing types:** _none_
 - **Tests:** 1/2 matched
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `tonic/src/transport/server/display_error_stack.rs` vs expected `transport/server/display_error_stack.rs`
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `tests:tonic/src/transport/server/display_error_stack.rs` vs expected `transport/server/display_error_stack.rs`
-- **Proposed provenance header:** `// port-lint: source transport/server/display_error_stack.rs` (current: `// port-lint: source tonic/src/transport/server/display_error_stack.rs`)
-- **Proposed provenance header:** `// port-lint: tests transport/server/display_error_stack.rs` (current: `// port-lint: tests tonic/src/transport/server/display_error_stack.rs`)
-- **Lint issues:** 2
 
 ### 8. metadata.map
 
-- **Target:** `metadata.Map [PROVENANCE-FALLBACK]`
+- **Target:** `metadata.Map`
 - **Similarity:** 0.05
 - **Dependents:** 0
 - **Priority Score:** 768709.5
@@ -157,13 +122,10 @@ Every matched file is listed below with function and type symbol parity.
 - **Types:** 1/24 matched (target 1)
 - **Missing types:** `Iter`, `KeyAndValueRef`, `KeyAndMutValueRef`, `IterMut`, `ValueDrain`, `Keys`, `KeyRef`, `Values`, `ValueRef`, `ValuesMut`, `ValueRefMut`, `ValueIter`, `ValueIterMut`, `GetAll`, `Entry`, `VacantEntry`, `OccupiedEntry`, `Item`, `IntoIter`, `IntoMetadataKey`, `Sealed`, `AsMetadataKey`, `AsEncodingAgnosticMetadataKey`
 - **Tests:** 0/14 matched
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `tonic/src/metadata/map.rs` vs expected `metadata/map.rs`
-- **Proposed provenance header:** `// port-lint: source metadata/map.rs` (current: `// port-lint: source tonic/src/metadata/map.rs`)
-- **Lint issues:** 1
 
-### 9. transport.server.mod
+### 9. tonic.transport.server.mod
 
-- **Target:** `transport.Server [STUB] [PROVENANCE-FALLBACK]`
+- **Target:** `transport.Server [STUB]`
 - **Similarity:** 0.00
 - **Dependents:** 0
 - **Priority Score:** 455310.0
@@ -172,13 +134,10 @@ Every matched file is listed below with function and type symbol parity.
 - **Types:** 1/12 matched (target 2)
 - **Missing types:** `BoxService`, `TraceInterceptor`, `Router`, `Svc`, `Response`, `Error`, `Future`, `SvcFuture`, `Output`, `MakeSvc`, `Fuse`
 - **Tests:** 0/1 matched
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `tonic/src/transport/server/mod.rs` vs expected `transport/server/mod.rs`
-- **Proposed provenance header:** `// port-lint: source transport/server/mod.rs` (current: `// port-lint: source tonic/src/transport/server/mod.rs`)
-- **Lint issues:** 1
 
 ### 10. metadata.value
 
-- **Target:** `metadata.Value [PROVENANCE-FALLBACK]`
+- **Target:** `metadata.Value`
 - **Similarity:** 0.01
 - **Dependents:** 0
 - **Priority Score:** 364309.9
@@ -187,13 +146,10 @@ Every matched file is listed below with function and type symbol parity.
 - **Types:** 4/8 matched (target 4)
 - **Missing types:** `Error`, `Err`, `Bmv`, `Amv`
 - **Tests:** 0/10 matched
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `tonic/src/metadata/value.rs` vs expected `metadata/value.rs`
-- **Proposed provenance header:** `// port-lint: source metadata/value.rs` (current: `// port-lint: source tonic/src/metadata/value.rs`)
-- **Lint issues:** 1
 
 ### 11. service.interceptor
 
-- **Target:** `service.Interceptor [PROVENANCE-FALLBACK]`
+- **Target:** `service.Interceptor`
 - **Similarity:** 0.17
 - **Dependents:** 0
 - **Priority Score:** 222908.3
@@ -202,15 +158,10 @@ Every matched file is listed below with function and type symbol parity.
 - **Types:** 2/13 matched (target 4)
 - **Missing types:** `InterceptorLayer`, `Service`, `Response`, `Error`, `Future`, `ResponseFuture`, `Kind`, `Output`, `ResponseBody`, `ResponseBodyKind`, `Data`
 - **Tests:** 3/3 matched
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `tonic/src/service/interceptor.rs` vs expected `service/interceptor.rs`
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `tests:tonic/src/service/interceptor.rs` vs expected `service/interceptor.rs`
-- **Proposed provenance header:** `// port-lint: source service/interceptor.rs` (current: `// port-lint: source tonic/src/service/interceptor.rs`)
-- **Proposed provenance header:** `// port-lint: tests service/interceptor.rs` (current: `// port-lint: tests tonic/src/service/interceptor.rs`)
-- **Lint issues:** 2
 
-### 12. request
+### 12. tonic.request
 
-- **Target:** `tonic.Request [PROVENANCE-FALLBACK]`
+- **Target:** `tonic.Request`
 - **Similarity:** 0.45
 - **Dependents:** 0
 - **Priority Score:** 153405.5
@@ -219,15 +170,10 @@ Every matched file is listed below with function and type symbol parity.
 - **Types:** 2/7 matched (target 3)
 - **Missing types:** `IntoRequest`, `IntoStreamingRequest`, `Stream`, `Message`, `Sealed`
 - **Tests:** 5/5 matched
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `tonic/src/request.rs` vs expected `request.rs`
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `tests:tonic/src/request.rs` vs expected `request.rs`
-- **Proposed provenance header:** `// port-lint: source request.rs` (current: `// port-lint: source tonic/src/request.rs`)
-- **Proposed provenance header:** `// port-lint: tests request.rs` (current: `// port-lint: tests tonic/src/request.rs`)
-- **Lint issues:** 2
 
 ### 13. metadata.key
 
-- **Target:** `metadata.Key [PROVENANCE-FALLBACK]`
+- **Target:** `metadata.Key`
 - **Similarity:** 0.03
 - **Dependents:** 0
 - **Priority Score:** 131909.7
@@ -236,13 +182,10 @@ Every matched file is listed below with function and type symbol parity.
 - **Types:** 4/5 matched (target 4)
 - **Missing types:** `Err`
 - **Tests:** 0/2 matched
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `tonic/src/metadata/key.rs` vs expected `metadata/key.rs`
-- **Proposed provenance header:** `// port-lint: source metadata/key.rs` (current: `// port-lint: source tonic/src/metadata/key.rs`)
-- **Lint issues:** 1
 
 ### 14. service.layered
 
-- **Target:** `service.Layered [ZERO] [PROVENANCE-FALLBACK]`
+- **Target:** `service.Layered [ZERO]`
 - **Similarity:** 0.00
 - **Dependents:** 0
 - **Priority Score:** 111210.0
@@ -251,13 +194,10 @@ Every matched file is listed below with function and type symbol parity.
 - **Types:** 1/7 matched (target 2)
 - **Missing types:** `Response`, `Error`, `Future`, `LayerExt`, `Sealed`, `TestService`
 - **Tests:** 0/2 matched
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `tonic/src/service/layered.rs` vs expected `service/layered.rs`
-- **Proposed provenance header:** `// port-lint: source service/layered.rs` (current: `// port-lint: source tonic/src/service/layered.rs`)
-- **Lint issues:** 1
 
 ### 15. metadata.encoding
 
-- **Target:** `metadata.Encoding [PROVENANCE-FALLBACK]`
+- **Target:** `metadata.Encoding`
 - **Similarity:** 0.08
 - **Dependents:** 0
 - **Priority Score:** 101609.2
@@ -265,13 +205,10 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing functions:** `is_empty`, `from_bytes`, `from_shared`, `from_static`, `decode`, `equals`, `values_equal`, `fmt`, `new`
 - **Types:** 5/6 matched (target 5)
 - **Missing types:** `Sealed`
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `tonic/src/metadata/encoding.rs` vs expected `metadata/encoding.rs`
-- **Proposed provenance header:** `// port-lint: source metadata/encoding.rs` (current: `// port-lint: source tonic/src/metadata/encoding.rs`)
-- **Lint issues:** 1
 
 ### 16. codec.compression
 
-- **Target:** `codec.Compression [STUB] [PROVENANCE-FALLBACK]`
+- **Target:** `codec.Compression [STUB]`
 - **Similarity:** 0.00
 - **Dependents:** 0
 - **Priority Score:** 72110.0
@@ -280,15 +217,10 @@ Every matched file is listed below with function and type symbol parity.
 - **Types:** 2/4 matched (target 3)
 - **Missing types:** `CompressionSettings`, `SingleMessageCompressionOverride`
 - **Tests:** 4/4 matched
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `tonic/src/codec/compression.rs` vs expected `codec/compression.rs`
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `tests:tonic/src/codec/compression.rs` vs expected `codec/compression.rs`
-- **Proposed provenance header:** `// port-lint: source codec/compression.rs` (current: `// port-lint: source tonic/src/codec/compression.rs`)
-- **Proposed provenance header:** `// port-lint: tests codec/compression.rs` (current: `// port-lint: tests tonic/src/codec/compression.rs`)
-- **Lint issues:** 2
 
 ### 17. codec.buffer
 
-- **Target:** `codec.Buffer [PROVENANCE-FALLBACK]`
+- **Target:** `codec.Buffer`
 - **Similarity:** 0.34
 - **Dependents:** 0
 - **Priority Score:** 51606.6
@@ -297,11 +229,17 @@ Every matched file is listed below with function and type symbol parity.
 - **Types:** 2/2 matched (target 3)
 - **Missing types:** _none_
 - **Tests:** 2/2 matched
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `tonic/src/codec/buffer.rs` vs expected `codec/buffer.rs`
-- **Provenance warning:** port-lint provenance header matched only after fallback normalization: `tests:tonic/src/codec/buffer.rs` vs expected `codec/buffer.rs`
-- **Proposed provenance header:** `// port-lint: source codec/buffer.rs` (current: `// port-lint: source tonic/src/codec/buffer.rs`)
-- **Proposed provenance header:** `// port-lint: tests codec/buffer.rs` (current: `// port-lint: tests tonic/src/codec/buffer.rs`)
-- **Lint issues:** 2
+
+### 18. metadata.mod
+
+- **Target:** `metadata.Mod [STUB]`
+- **Similarity:** 0.00
+- **Dependents:** 0
+- **Priority Score:** 10.0
+- **Functions:** 0/0 matched (target 29)
+- **Missing functions:** _none_
+- **Types:** 0/0 matched (target 1)
+- **Missing types:** _none_
 
 ## Success Criteria
 
@@ -323,6 +261,5 @@ do not treat them as the next implementation target by default.
 
 | Source | Target | Path |
 |--------|--------|------|
-| `lib` | `tonic.Lib` | `lib` |
-| `metadata.mod` | `metadata.Mod` | `metadata/mod` |
+| `tonic.lib` | `tonic.Lib` | `tonic/src/lib` |
 
