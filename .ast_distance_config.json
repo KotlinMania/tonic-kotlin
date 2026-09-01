@@ -17,7 +17,11 @@
   },
   "reexport_modules": [
     "lib",
+    "lib.rs",
+    "tonic/src/lib.rs",
     "metadata/mod",
-    "metadata.mod"
+    "metadata.mod",
+    "metadata/mod.rs",
+    "tonic/src/metadata/mod.rs"
   ]
 }
