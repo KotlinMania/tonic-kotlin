@@ -1,4 +1,4 @@
-// port-lint: tests tonic/src/service/interceptor.rs service/layered.rs
+// port-lint: tests service/interceptor.rs service/layered.rs
 package io.github.kotlinmania.tonic.service
 
 import io.github.kotlinmania.tonic.Request

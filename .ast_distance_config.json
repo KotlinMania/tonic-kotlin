@@ -2,7 +2,7 @@
   "type": "port",
   "name": "tonic-kotlin",
   "source": {
-    "path": "tmp",
+    "path": "tmp/tonic/src",
     "lang": "rust"
   },
   "target": {
