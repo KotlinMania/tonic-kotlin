@@ -20,13 +20,9 @@ enum class CompressionEncoding(
     Zstd("zstd"),
     ;
 
-    fun asStr(): String {
-        return value
-    }
+    fun asStr(): String = value
 
-    override fun toString(): String {
-        return value
-    }
+    override fun toString(): String = value
 
     companion object {
         val ENCODINGS: List<CompressionEncoding> = entries
@@ -101,11 +97,7 @@ class EnabledCompressionEncodings private constructor(
         return sb.toString()
     }
 
-    fun isEnabled(encoding: CompressionEncoding): Boolean {
-        return encodings.contains(encoding)
-    }
+    fun isEnabled(encoding: CompressionEncoding): Boolean = encodings.contains(encoding)
 
-    fun isEmpty(): Boolean {
-        return encodings.isEmpty()
-    }
+    fun isEmpty(): Boolean = encodings.isEmpty()
 }
