@@ -1,4 +1,4 @@
-// port-lint: tests tonic/src/extensions.rs
+// port-lint: tests extensions.rs
 package io.github.kotlinmania.tonic
 
 import kotlin.test.Test

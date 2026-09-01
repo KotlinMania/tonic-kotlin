@@ -1,4 +1,4 @@
-// port-lint: source tonic/src/metadata/map.rs
+// port-lint: source metadata/map.rs
 package io.github.kotlinmania.tonic.metadata
 
 import kotlin.jvm.JvmName
