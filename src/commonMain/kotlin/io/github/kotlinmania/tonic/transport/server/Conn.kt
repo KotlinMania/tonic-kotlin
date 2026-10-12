@@ -14,8 +14,8 @@ interface Connected<T> {
  * Connection info for standard TCP streams.
  */
 class TcpConnectInfo(
-    val localAddr: String? = null,
-    val remoteAddr: String? = null,
+    internal val localAddr: String? = null,
+    internal val remoteAddr: String? = null,
 ) : Connected<TcpConnectInfo> {
     fun localAddr(): String? = localAddr
 

@@ -13,7 +13,7 @@ class ServerTlsConfig(
     val clientCaRoot: Certificate? = null,
     val clientAuthOptional: Boolean = false,
     val ignoreClientOrder: Boolean = false,
-    val useKeyLog: Boolean = false,
+    internal val useKeyLog: Boolean = false,
     val timeout: Duration? = null,
 ) {
     fun identity(identity: Identity): ServerTlsConfig =

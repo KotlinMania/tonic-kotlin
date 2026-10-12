@@ -37,12 +37,8 @@ class Certificate(
  */
 class Identity(
     val cert: Certificate,
-    internal val key: ByteArray,
+    val key: ByteArray,
 ) {
-    fun cert(): Certificate = cert
-
-    fun key(): ByteArray = key
-
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other !is Identity) return false

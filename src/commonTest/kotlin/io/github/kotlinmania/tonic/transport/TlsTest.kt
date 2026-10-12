@@ -22,8 +22,8 @@ class TlsTest {
         val certData = "-----BEGIN CERTIFICATE-----\ntest\n-----END CERTIFICATE-----"
         val keyData = "-----BEGIN PRIVATE KEY-----\nkey\n-----END PRIVATE KEY-----"
         val identity = Identity.fromPem(certData, keyData)
-        assertContentEquals(certData.encodeToByteArray(), identity.cert().getRef())
-        assertContentEquals(keyData.encodeToByteArray(), identity.key())
+        assertContentEquals(certData.encodeToByteArray(), identity.cert.getRef())
+        assertContentEquals(keyData.encodeToByteArray(), identity.key)
         val same = Identity.fromPem(certData, keyData)
         assertEquals(identity, same)
     }

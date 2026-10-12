@@ -14,9 +14,9 @@ class ClientTlsConfig(
     val trustAnchors: List<String> = emptyList(),
     val identity: Identity? = null,
     val assumeHttp2: Boolean = false,
-    val withNativeRoots: Boolean = false,
-    val withWebpkiRoots: Boolean = false,
-    val useKeyLog: Boolean = false,
+    internal val withNativeRoots: Boolean = false,
+    internal val withWebpkiRoots: Boolean = false,
+    internal val useKeyLog: Boolean = false,
     val timeout: Duration? = null,
 ) {
     fun domainName(domainName: String): ClientTlsConfig =
