@@ -3,7 +3,6 @@ package io.github.kotlinmania.tonic.transport.server
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import kotlin.test.assertNull
 
 class ConnTest {
     @Test

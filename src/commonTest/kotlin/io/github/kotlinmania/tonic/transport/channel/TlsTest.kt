@@ -29,15 +29,17 @@ class TlsTest {
     fun testClientTlsConfigBuilder() {
         val cert = Certificate.fromPem("test-ca")
         val identity = Identity.fromPem("client-cert", "client-key")
-        val config = ClientTlsConfig.new()
-            .domainName("example.com")
-            .caCertificate(cert)
-            .trustAnchor("anchor-1")
-            .identity(identity)
-            .assumeHttp2(true)
-            .useKeyLog()
-            .withEnabledRoots()
-            .timeout(5.seconds)
+        val config =
+            ClientTlsConfig
+                .new()
+                .domainName("example.com")
+                .caCertificate(cert)
+                .trustAnchor("anchor-1")
+                .identity(identity)
+                .assumeHttp2(true)
+                .useKeyLog()
+                .withEnabledRoots()
+                .timeout(5.seconds)
 
         assertEquals("example.com", config.domain)
         assertEquals(listOf(cert), config.certs)

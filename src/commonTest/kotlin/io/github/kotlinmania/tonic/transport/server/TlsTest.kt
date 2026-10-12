@@ -27,13 +27,15 @@ class TlsTest {
     fun testServerTlsConfigBuilder() {
         val cert = Certificate.fromPem("cert")
         val identity = Identity.fromPem("cert", "key")
-        val config = ServerTlsConfig.new()
-            .identity(identity)
-            .clientCaRoot(cert)
-            .clientAuthOptional(true)
-            .ignoreClientOrder(true)
-            .useKeyLog()
-            .timeout(10.seconds)
+        val config =
+            ServerTlsConfig
+                .new()
+                .identity(identity)
+                .clientCaRoot(cert)
+                .clientAuthOptional(true)
+                .ignoreClientOrder(true)
+                .useKeyLog()
+                .timeout(10.seconds)
 
         assertEquals(identity, config.identity)
         assertEquals(cert, config.clientCaRoot)

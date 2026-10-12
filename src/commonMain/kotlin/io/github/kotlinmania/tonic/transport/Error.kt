@@ -24,12 +24,8 @@ internal class ErrorImpl(
 class Error internal constructor(
     private val inner: ErrorImpl,
 ) : Exception(inner.kind.description(), inner.source) {
-
     val kind: Kind
         get() = inner.kind
-
-    val source: Throwable?
-        get() = inner.source
 
     fun with(source: Throwable): Error {
         inner.source = source
