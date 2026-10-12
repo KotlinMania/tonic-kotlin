@@ -170,7 +170,7 @@ class Status(
 
             val msgKey = AsciiMetadataKey.fromAscii(GRPC_MESSAGE_HEADER)
             val msgVal = map.get(msgKey)
-            val msg = msgVal?.toStr() ?: ""
+            val msg = msgVal?.toStr().orEmpty()
 
             val detailsKey = BinaryMetadataKey.fromBinary(GRPC_STATUS_DETAILS_HEADER)
             val detailsVal = map.get(detailsKey)
