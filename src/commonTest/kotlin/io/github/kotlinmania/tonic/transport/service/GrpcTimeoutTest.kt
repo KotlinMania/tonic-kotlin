@@ -99,8 +99,6 @@ class GrpcTimeoutTest {
         }
     }
 
-    private fun genString(): String = "100m"
-
     @Test
     fun fuzz() {
         val gen = HeaderValueGen.arbitrary()
