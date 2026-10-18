@@ -101,3 +101,28 @@ class EnabledCompressionEncodings private constructor(
 
     fun isEmpty(): Boolean = encodings.isEmpty()
 }
+
+/**
+ * Controls compression behavior for individual messages within a stream.
+ */
+enum class SingleMessageCompressionOverride {
+    /**
+     * Inherit whatever compression is already configured. If the stream is compressed this
+     * message will also be configured.
+     *
+     * This is the default.
+     */
+    Inherit,
+
+    /**
+     * Don't compress this message, even if compression is enabled on the stream.
+     */
+    Disable,
+    ;
+
+    companion object {
+        val Default: SingleMessageCompressionOverride = Inherit
+
+        fun default(): SingleMessageCompressionOverride = Inherit
+    }
+}

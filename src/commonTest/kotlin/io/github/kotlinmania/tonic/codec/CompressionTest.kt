@@ -44,4 +44,11 @@ class CompressionTest {
         encodings2.enable(CompressionEncoding.Gzip)
         assertEquals("zstd,deflate,gzip,identity", encodings2.intoAcceptEncodingHeaderValue())
     }
+
+    @Test
+    fun singleMessageCompressionOverride() {
+        assertEquals(SingleMessageCompressionOverride.Inherit, SingleMessageCompressionOverride.Default)
+        assertEquals(SingleMessageCompressionOverride.Inherit, SingleMessageCompressionOverride.default())
+        assertEquals(2, SingleMessageCompressionOverride.entries.size)
+    }
 }

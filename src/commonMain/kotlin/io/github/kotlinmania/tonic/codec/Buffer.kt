@@ -24,6 +24,23 @@ class DecodeBuf(
         length -= cnt
     }
 
+    fun getU8(): Int {
+        require(length >= 1) { "cannot read u8 from empty buffer" }
+        val b = bytes[offset].toInt() and 0xFF
+        advance(1)
+        return b
+    }
+
+    fun getU32(): Long {
+        require(length >= 4) { "cannot read u32: required 4 bytes but only $length available" }
+        val b0 = (bytes[offset].toLong() and 0xFFL) shl 24
+        val b1 = (bytes[offset + 1].toLong() and 0xFFL) shl 16
+        val b2 = (bytes[offset + 2].toLong() and 0xFFL) shl 8
+        val b3 = bytes[offset + 3].toLong() and 0xFFL
+        advance(4)
+        return b0 or b1 or b2 or b3
+    }
+
     fun copyToSlice(dst: ByteArray) {
         val toCopy = minOf(dst.size, length)
         bytes.copyInto(dst, 0, offset, offset + toCopy)
@@ -47,22 +64,58 @@ class DecodeBuf(
  */
 class EncodeBuf private constructor(
     private val buffer: MutableList<Byte>,
+    private var capacity: Int = 100,
 ) {
-    constructor() : this(mutableListOf())
+    constructor() : this(mutableListOf(), 100)
 
-    fun remainingMut(): Int = 100 - buffer.size
+    fun remainingMut(): Int = maxOf(0, capacity - buffer.size)
 
     fun advanceMut(cnt: Int) {
         repeat(cnt) { buffer.add(0) }
     }
 
+    fun reserve(additional: Int) {
+        require(additional >= 0) { "additional capacity must be non-negative" }
+        if (buffer.size + additional > capacity) {
+            capacity = buffer.size + additional
+        }
+        (buffer as? ArrayList<Byte>)?.ensureCapacity(capacity)
+    }
+
+    fun put(byte: Byte) {
+        buffer.add(byte)
+        if (buffer.size > capacity) {
+            capacity = buffer.size
+        }
+    }
+
+    fun put(bytes: ByteArray) {
+        for (b in bytes) {
+            buffer.add(b)
+        }
+        if (buffer.size > capacity) {
+            capacity = buffer.size
+        }
+    }
+
+    fun putU8(value: Int) {
+        put((value and 0xFF).toByte())
+    }
+
     fun putU8(b: Byte) {
-        buffer.add(b)
+        put(b)
+    }
+
+    fun putU32(value: Long) {
+        put(((value shr 24) and 0xFF).toByte())
+        put(((value shr 16) and 0xFF).toByte())
+        put(((value shr 8) and 0xFF).toByte())
+        put((value and 0xFF).toByte())
     }
 
     fun toByteArray(): ByteArray = buffer.toByteArray()
 
     companion object {
-        fun new(buffer: MutableList<Byte>): EncodeBuf = EncodeBuf(buffer)
+        fun new(buffer: MutableList<Byte>): EncodeBuf = EncodeBuf(buffer, 100)
     }
 }
