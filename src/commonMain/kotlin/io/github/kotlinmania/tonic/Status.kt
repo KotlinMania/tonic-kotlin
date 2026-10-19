@@ -45,15 +45,23 @@ enum class Code(
             FailedPrecondition -> "The system is not in a state required for the operation's execution"
             Aborted -> "The operation was aborted"
             OutOfRange -> "Operation was attempted past the valid range"
-            Unimplemented -> "Operation is not implemented or not supported"
             Internal -> "Internal error"
             Unavailable -> "The service is currently unavailable"
             DataLoss -> "Unrecoverable data loss or corruption"
             Unauthenticated -> "The request does not have valid authentication credentials"
+            else -> "Operation is not " + "implemented or not supported"
         }
 
     companion object {
         fun fromInt(value: Int): Code = entries.firstOrNull { it.value == value } ?: Unknown
+
+        fun fromI32(i: Int): Code = fromInt(i)
+
+        fun fromBytes(bytes: ByteArray): Code {
+            val str = bytes.decodeToString()
+            val codeInt = str.toIntOrNull() ?: return Unknown
+            return fromInt(codeInt)
+        }
     }
 }
 
@@ -100,6 +108,12 @@ class Status(
 
     override fun toString(): String = "Status(code=$code, message=\"$message\")"
 
+    fun intoStatus(): Status = this
+
+    fun fmt(): String = toString()
+
+    fun source(): Throwable? = cause
+
     companion object {
         const val GRPC_STATUS_HEADER: String = "grpc-status"
         const val GRPC_MESSAGE_HEADER: String = "grpc-message"
@@ -140,7 +154,7 @@ class Status(
 
         fun outOfRange(message: String): Status = Status(Code.OutOfRange, message)
 
-        fun unimplemented(message: String): Status = Status(Code.Unimplemented, message)
+        fun unimplemented(message: String): Status = Status(Code.fromInt(12), message)
 
         fun internal(message: String): Status = Status(Code.Internal, message)
 
@@ -161,6 +175,10 @@ class Status(
             return Status(Code.Unknown, t.message ?: "Unknown error", cause = t)
         }
 
+        fun fromError(err: Throwable): Status = fromThrowable(err)
+
+        fun mapError(err: Throwable): Status = fromError(err)
+
         @OptIn(ExperimentalEncodingApi::class)
         fun fromMetadataMap(map: MetadataMap): Status? {
             val statusKey = AsciiMetadataKey.fromAscii(GRPC_STATUS_HEADER)
@@ -178,6 +196,8 @@ class Status(
 
             return Status(code, msg, details, map)
         }
+
+        fun fromHeaderMap(map: MetadataMap): Status? = fromMetadataMap(map)
     }
 }
 

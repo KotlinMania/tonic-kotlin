@@ -1,4 +1,3 @@
-// port-lint: source metadata/mod.rs
 package io.github.kotlinmania.tonic.metadata
 
 /**

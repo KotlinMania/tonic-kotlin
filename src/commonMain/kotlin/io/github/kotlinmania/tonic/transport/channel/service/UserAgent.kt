@@ -5,7 +5,7 @@ import io.github.kotlinmania.tonic.Request
 import io.github.kotlinmania.tonic.metadata.AsciiMetadataKey
 import io.github.kotlinmania.tonic.metadata.AsciiMetadataValue
 
-const val TONIC_USER_AGENT: String = "tonic/0.12.3"
+const val TONIC_USER_AGENT: String = "tonic/0.14.3"
 
 /**
  * Middleware that sets the User-Agent header on outgoing requests.
@@ -20,6 +20,8 @@ class UserAgent<T>(
         } else {
             TONIC_USER_AGENT
         }
+
+    fun pollReady(): Boolean = true
 
     fun <Req> applyToRequest(req: Request<Req>): Request<Req> {
         val existing = req.metadata().get(AsciiMetadataKey.fromAscii("user-agent"))
@@ -36,7 +38,12 @@ class UserAgent<T>(
         return req
     }
 
+    fun <Req> call(req: Request<Req>): Request<Req> = applyToRequest(req)
+
     companion object {
-        fun <T> new(inner: T, userAgent: String? = null): UserAgent<T> = UserAgent(inner, userAgent)
+        fun <T> new(
+            inner: T,
+            userAgent: String? = null,
+        ): UserAgent<T> = UserAgent(inner, userAgent)
     }
 }

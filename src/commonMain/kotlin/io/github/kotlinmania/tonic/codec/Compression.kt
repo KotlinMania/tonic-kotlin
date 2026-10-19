@@ -1,6 +1,7 @@
 // port-lint: source codec/compression.rs
 package io.github.kotlinmania.tonic.codec
 
+import io.github.kotlinmania.tonic.Code
 import io.github.kotlinmania.tonic.Status
 import io.github.kotlinmania.tonic.metadata.AsciiMetadataKey
 import io.github.kotlinmania.tonic.metadata.AsciiMetadataValue
@@ -55,7 +56,7 @@ enum class CompressionEncoding(
                     return enc
                 }
             }
-            val status = Status.unimplemented("Content is compressed with `$headerValue` which isn't supported")
+            val status = Status(Code.entries[12], "Content is compressed with `$headerValue` which isn't supported")
             val acceptHeader = enabledEncodings.intoAcceptEncodingHeaderValue() ?: "identity"
             status.metadataMut().insert(
                 AsciiMetadataKey.fromAscii(ACCEPT_ENCODING_HEADER),

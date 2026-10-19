@@ -38,7 +38,7 @@ class UserAgentTest {
         val expectedUserAgent = TONIC_USER_AGENT
         val testSvc = TestSvc(expectedUserAgent)
         val ua = UserAgent.new(testSvc, null)
-        val req = ua.applyToRequest(Request.new(Unit))
+        val req = ua.call(Request.new(Unit))
         testSvc.call(req)
     }
 
@@ -47,7 +47,7 @@ class UserAgentTest {
         val expectedUserAgent = "Greeter 1.1 $TONIC_USER_AGENT"
         val testSvc = TestSvc(expectedUserAgent)
         val ua = UserAgent.new(testSvc, "Greeter 1.1")
-        val req = ua.applyToRequest(Request.new(Unit))
+        val req = ua.call(Request.new(Unit))
         testSvc.call(req)
     }
 
@@ -61,7 +61,7 @@ class UserAgentTest {
         val expectedUserAgent = "request-ua/x.y $TONIC_USER_AGENT"
         val testSvc = TestSvc(expectedUserAgent)
         val ua = UserAgent.new(testSvc, null)
-        val transformed = ua.applyToRequest(req)
+        val transformed = ua.call(req)
         testSvc.call(transformed)
     }
 
@@ -75,7 +75,7 @@ class UserAgentTest {
         val expectedUserAgent = "request-ua/x.y Greeter 1.1 $TONIC_USER_AGENT"
         val testSvc = TestSvc(expectedUserAgent)
         val ua = UserAgent.new(testSvc, "Greeter 1.1")
-        val transformed = ua.applyToRequest(req)
+        val transformed = ua.call(req)
         testSvc.call(transformed)
     }
 }
