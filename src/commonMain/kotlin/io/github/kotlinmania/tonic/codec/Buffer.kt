@@ -82,6 +82,29 @@ class EncodeBuf private constructor(
         (buffer as? ArrayList<Byte>)?.ensureCapacity(capacity)
     }
 
+    fun chunkMut(): ByteArray = ByteArray(remainingMut())
+
+    fun putSlice(src: ByteArray) {
+        put(src)
+    }
+
+    fun putBytes(
+        `val`: Byte,
+        cnt: Int,
+    ) {
+        repeat(cnt) { buffer.add(`val`) }
+        if (buffer.size > capacity) {
+            capacity = buffer.size
+        }
+    }
+
+    fun putBytes(
+        `val`: Int,
+        cnt: Int,
+    ) {
+        putBytes((`val` and 0xFF).toByte(), cnt)
+    }
+
     fun put(byte: Byte) {
         buffer.add(byte)
         if (buffer.size > capacity) {

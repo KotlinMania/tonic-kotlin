@@ -1,6 +1,7 @@
 // port-lint: source response.rs
 package io.github.kotlinmania.tonic
 
+import io.github.kotlinmania.http.Extensions
 import io.github.kotlinmania.tonic.metadata.MetadataMap
 
 /**
@@ -9,7 +10,7 @@ import io.github.kotlinmania.tonic.metadata.MetadataMap
 class Response<T>(
     private val message: T,
     private val metadata: MetadataMap = MetadataMap(),
-    private val extensions: Extensions = Extensions(),
+    private val extensions: Extensions = Extensions.new(),
 ) {
     fun getRef(): T = message
 
