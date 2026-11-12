@@ -18,6 +18,8 @@ tokio = "0.1.1"
 tracing = "0.1.0"
 serdeCore = "0.1.11"
 
+androidxTestRunner = "1.7.0"
+
 [plugins]
 android-kotlin-multiplatform-library = { id = "com.android.kotlin.multiplatform.library", version.ref = "androidKmp" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
@@ -44,6 +46,8 @@ socket2-kotlin = { module = "io.github.kotlinmania:socket2-kotlin", version.ref 
 tokio-kotlin = { module = "io.github.kotlinmania:tokio-kotlin", version.ref = "tokio" }
 tracing-kotlin = { module = "io.github.kotlinmania:tracing-kotlin", version.ref = "tracing" }
 serde-core = { module = "io.github.kotlinmania:serde-core", version.ref = "serdeCore" }
+
+androidx-test-runner = { module = "androidx.test:runner", version.ref = "androidxTestRunner" }
 
 [bundles]
 tonic-commonMain = [
