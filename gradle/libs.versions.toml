@@ -63,3 +63,6 @@ tonic-commonMain = [
   "tracing-kotlin",
   "serde-core",
 ]
+tonic-commonTest = [
+  "kotlinx-coroutines-test",
+]
